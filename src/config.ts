@@ -14,8 +14,8 @@ export const SITE = {
   desc: "Senior Full-stack Blockchain Engineer | 160+ Contracts Deployed | DeFi & Emerging markets Infrastructure",
   title: "Umar's Portfolio Site",
   postPerPage: 4,
-  profile: "https://0xumarkhatab.github.io/",
-  ogImage: "https://avatars.githubusercontent.com/u/71306738?v=4",
+  profile: "https://github.com/0xumarkhatab",
+  ogImage: "pfp.jpg",
   lightAndDarkMode: true,
   postPerIndex: 4,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
