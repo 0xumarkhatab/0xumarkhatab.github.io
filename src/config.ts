@@ -15,7 +15,7 @@ export const SITE = {
   title: "Umar's Portfolio Site",
   postPerPage: 4,
   profile: "https://github.com/0xumarkhatab",
-  ogImage: "pfp.jpg",
+  ogImage: "site_preview.jpg",
   lightAndDarkMode: true,
   postPerIndex: 4,
   scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
