@@ -1,7 +1,8 @@
 {
-  "name": "",
+  "name": "Umar's Site",
   "type": "module",
   "version": "5.5.0",
+  "packageManager": "pnpm@9.1.0",
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build && pagefind --site dist && cp -r dist/pagefind public/",
