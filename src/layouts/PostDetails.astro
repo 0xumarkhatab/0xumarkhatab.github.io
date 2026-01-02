@@ -47,17 +47,17 @@ if (typeof initOgImage === "string") {
 }
 
 // Use dynamic OG image if enabled and no remote|local ogImage
-if (!ogImageUrl && SITE.dynamicOgImage) {
+if (!ogImageUrl && SITE?.dynamicOgImage) {
   ogImageUrl = `${getPath(post.id, post.filePath)}/index.png`;
 }
 
-// Resolve OG image URL (or fallback to SITE.ogImage / default `og.png`)
+// Resolve OG image URL (or fallback to SITE?.ogImage / default `og.png`)
 const ogImage = ogImageUrl
   ? new URL(ogImageUrl, Astro.url.origin).href
   : undefined;
 
 const layoutProps = {
-  title: `${title} | ${SITE.title}`,
+  title: `${title} | ${SITE?.title}`,
   author,
   description,
   pubDatetime,
@@ -89,7 +89,7 @@ const nextPost =
     id="main-content"
     class:list={[
       "mx-auto w-full max-w-app px-4 pb-12",
-      { "mt-8": !SITE.showBackButton },
+      { "mt-8": !SITE?.showBackButton },
     ]}
     data-pagefind-body
   >
@@ -105,7 +105,7 @@ const nextPost =
         aria-hidden="true"
         class:list={[
           "max-sm:hidden",
-          { hidden: !SITE.editPost?.enabled || hideEditPost },
+          { hidden: !SITE?.editPost?.enabled || hideEditPost },
         ]}>|</span
       >
       <EditPost {hideEditPost} {post} class="max-sm:hidden" />

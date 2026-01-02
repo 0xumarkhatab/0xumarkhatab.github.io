@@ -43,7 +43,7 @@ const isActive = (path: string) => {
         href="/"
         class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"
       >
-        {SITE.title}
+        {SITE?.title}
       </a>
       <nav
         id="nav-menu"
@@ -84,7 +84,7 @@ const isActive = (path: string) => {
             </a>
           </li> -->
           {
-            SITE.showArchives && (
+            SITE?.showArchives && (
               <li class="col-span-2">
                 <LinkButton
                   href="/archives"
@@ -118,7 +118,7 @@ const isActive = (path: string) => {
             </LinkButton>
           </li>
           {
-            SITE.lightAndDarkMode && (
+            SITE?.lightAndDarkMode && (
               <li class="col-span-1 flex items-center justify-center">
                 <button
                   id="theme-btn"
