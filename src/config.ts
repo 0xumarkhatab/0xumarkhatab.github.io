@@ -4,7 +4,7 @@ export const SITE = {
   website: "https://0xumarkhatab.github.io/",
   author: "0xumarkhatab",
   desc: "Senior Full-stack Blockchain Engineer | 160+ Contracts Deployed | DeFi & Infrastructure",
-  title: "0xumarkhatab",
+  title: "Umar's Space",
   postPerPage: 4,
 };
 

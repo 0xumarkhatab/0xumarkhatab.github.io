@@ -1,9 +1,9 @@
 ---
-title: "Finding a Critical Re-entrancy in XYZ Protocol"
+title: "Finding a High severity Issue in Zerolend Governance smart contracts"
 pubDatetime: 2024-01-01
 tags:
   - "DEFI"
   - "bug-writeups"
-description: "A detailed breakdown of a high-severity bug found during a Code4rena contest."
+description: "A detailed breakdown of a high-severity bug found during Zerolend immunefi boost."
 ---
-Your technical analysis goes here...
+Will update this soon...
