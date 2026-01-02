@@ -21,7 +21,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     return paginate(tagPosts, {
       params: { tag },
       props: { tagName },
-      pageSize: SITE.postPerPage,
+      pageSize: SITE?.postPerPage,
     });
   });
 }
@@ -31,7 +31,7 @@ const { tag } = params;
 const { page, tagName } = Astro.props;
 ---
 
-<Layout title={`Tag: ${tagName} | ${SITE.title}`}>
+<Layout title={`Tag: ${tagName} | ${SITE?.title}`}>
   <Header />
   <Main
     pageTitle={[`Tag:`, `${tagName}`]}

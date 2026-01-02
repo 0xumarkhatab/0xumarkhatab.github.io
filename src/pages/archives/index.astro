@@ -9,7 +9,7 @@ import getPostsByGroupCondition from "@/utils/getPostsByGroupCondition";
 import { SITE } from "@/config";
 
 // Redirect to 404 page if `showArchives` config is false
-if (!SITE.showArchives) {
+if (!SITE?.showArchives) {
   return Astro.redirect("/404");
 }
 
@@ -31,7 +31,7 @@ const months = [
 ];
 ---
 
-<Layout title={`Archives | ${SITE.title}`}>
+<Layout title={`Archives | ${SITE?.title}`}>
   <Header />
   <Main pageTitle="Archives" pageDesc="All the articles I've archived.">
     {

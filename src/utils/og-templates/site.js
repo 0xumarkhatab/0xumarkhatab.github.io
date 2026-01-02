@@ -78,14 +78,14 @@ export default async () => {
                             type: "p",
                             props: {
                               style: { fontSize: 72, fontWeight: "bold" },
-                              children: SITE.title,
+                              children: SITE?.title,
                             },
                           },
                           {
                             type: "p",
                             props: {
                               style: { fontSize: 28 },
-                              children: SITE.desc,
+                              children: SITE?.desc,
                             },
                           },
                         ],
@@ -105,7 +105,7 @@ export default async () => {
                           type: "span",
                           props: {
                             style: { overflow: "hidden", fontWeight: "bold" },
-                            children: new URL(SITE.website).hostname,
+                            children: new URL(SITE?.website).hostname,
                           },
                         },
                       },
@@ -122,7 +122,7 @@ export default async () => {
       width: 1200,
       height: 630,
       embedFont: true,
-      fonts: await loadGoogleFonts(SITE.title + SITE.desc + SITE.website),
+      fonts: await loadGoogleFonts(SITE?.title + SITE?.desc + SITE?.website),
     }
   );
 };

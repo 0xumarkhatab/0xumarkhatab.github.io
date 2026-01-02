@@ -11,9 +11,9 @@ export interface Props {
 
 const { hideEditPost, post, class: className = "" } = Astro.props;
 
-const href = `${SITE.editPost?.url}${post.filePath}`;
+const href = `${SITE?.editPost?.url}${post.filePath}`;
 const showEditPost =
-  SITE.editPost?.enabled && !hideEditPost && href.trim() !== "";
+  SITE?.editPost?.enabled && !hideEditPost && href.trim() !== "";
 ---
 
 {
@@ -28,7 +28,7 @@ const showEditPost =
       ]}
     >
       <IconEdit class="inline-block" />
-      <span>{SITE.editPost?.text}</span>
+      <span>{SITE?.editPost?.text}</span>
     </a>
   )
 }

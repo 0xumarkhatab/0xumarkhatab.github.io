@@ -17,11 +17,11 @@ export interface Props {
 }
 
 const {
-  title = SITE.title,
-  author = SITE.author,
-  profile = SITE.profile,
-  description = SITE.desc,
-  ogImage = SITE.ogImage ? `/${SITE.ogImage}` : "/og.png",
+  title = SITE?.title,
+  author = SITE?.author,
+  profile = SITE?.profile,
+  description = SITE?.desc,
+  ogImage = SITE?.ogImage ? `/${SITE?.ogImage}` : "/og.png",
   canonicalURL = new URL(Astro.url.pathname, Astro.url),
   pubDatetime,
   modDatetime,
@@ -49,8 +49,8 @@ const structuredData = {
 
 <!doctype html>
 <html
-  dir={SITE.dir}
-  lang=`${SITE.lang ?? "en"}`
+  dir={SITE?.dir}
+  lang=`${SITE?.lang ?? "en"}`
   class={`${scrollSmooth && "scroll-smooth"}`}
 >
   <head>
@@ -110,7 +110,7 @@ const structuredData = {
     <link
       rel="alternate"
       type="application/rss+xml"
-      title={SITE.title}
+      title={SITE?.title}
       href={new URL("rss.xml", Astro.site)}
     />
 
