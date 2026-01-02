@@ -1,0 +1,539 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Socials from "@/components/Socials.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import Card from "@/components/Card.astro";
+import Hr from "@/components/Hr.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+import IconRss from "@/assets/icons/IconRss.svg";
+import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import { SITE } from "@/config";
+import { SOCIALS } from "@/constants";
+
+
+const categories = [
+  { 
+    title: "The Build (Engineering)", 
+    icon: "🧱", 
+    desc: "160+ contracts. RiftLend, Multisig Bridges, and Non-Custodial Wallets.", 
+    link: "/tags/engineering" 
+  },
+  { 
+    title: "The Break (Security)", 
+    icon: "🛡️", 
+    desc: "1H/1M on ZeroLend via Immunefi. Secureum Top 20. Bug hunting & Invariant testing.", 
+    link: "/tags/security" 
+  },
+  { 
+    title: "The Logic (Writing)", 
+    icon: "✍️", 
+    desc: "Explaining EVM Bytecode, Uniswap V4 Hooks, and DEX design mechanics.", 
+    link: "/tags/research" 
+  }
+];
+const modules = [
+  { title: "DeFi Infrastructure", icon: "🏦", tag: "defi", desc: "Lending protocols (Riftlend), AMMs, and Staking." },
+  { title: "Cross-Chain Systems", icon: "⛓️", tag: "infrastructure", desc: "Multisig Swap Bridges and Native Token Bridging." },
+  { title: "Low-Level / Huff", icon: "⚡", tag: "huff", desc: "Gas optimization, EVM Opcodes, and Assembly." },
+  { title: "Web3 Engineering", icon: "🛠️", tag: "engineering", desc: "Non-custodial wallets and Full-stack integration." }
+];
+const posts = await getCollection("blog");
+
+const sortedPosts = getSortedPosts(posts);
+const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
+const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+---
+
+<Layout>
+  <Header />
+  <main id="main-content" data-layout="index">
+
+  <section id="hero" class="mt-10 mb-20">
+  <div class="glass-card p-8 md:p-12 border-t-2 border-accent relative overflow-hidden">
+    <div class="flex flex-col md:flex-row justify-between items-start gap-10">
+      <div class="flex-1">
+        <p class="text-accent font-mono text-sm mb-3">0xumarkhatab:~$ whoami --status</p>
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight">
+          Senior EVM Engineer <br/>
+          <span class="text-accent italic">& Security Researcher</span>
+        </h1>
+        
+        <p class="mt-6 text-lg opacity-90 max-w-2xl leading-relaxed">
+          Currently <span class="text-accent">Founding EVM Engineer at ViFi Labs</span>. 
+          Building modular DeFi infrastructure with a obsession for <span class="border-b border-accent/30">measurable quality</span> and 97%+ test coverage. 
+          I build protocols and find critical bugs in them.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="#featured" class="px-6 py-3 bg-accent text-background font-bold rounded shadow-glow hover:scale-105 transition-all">
+            View Stack
+          </a>
+          <a href="https://twitter.com/0xumarkhatab" class="px-6 py-3 border border-accent/50 text-accent font-bold rounded hover:bg-accent/10 transition-all">
+            Connect on X
+          </a>
+        </div>
+      </div>
+
+      <div class="w-full md:w-72 font-mono text-xs bg-background/60 p-6 rounded-lg border border-border space-y-4">
+        <div class="text-accent border-b border-border pb-2 font-bold uppercase tracking-widest">Active_Metrics</div>
+        <div class="flex justify-between"><span>Experience:</span> <span class="text-accent">4+ Years</span></div>
+        <div class="flex justify-between"><span>Code:</span> <span class="text-accent">20k+ Solidity</span></div>
+        <div class="flex justify-between"><span>Findings:</span> <span class="text-accent">1H / 1M (ZeroLend)</span></div>
+        <div class="flex justify-between"><span>Status:</span> <span class="text-accent">Founding @ ViFi</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+  {categories.map(cat => (
+    <a href={cat.link} class="glass-card p-6 hover:border-accent group transition-all">
+      <div class="text-3xl mb-4 group-hover:scale-110 transition-transform">{cat.icon}</div>
+      <h3 class="text-lg font-bold text-accent">{cat.title}</h3>
+      <p class="mt-2 text-sm opacity-70 leading-relaxed">{cat.desc}</p>
+      <div class="mt-4 text-[10px] font-mono text-accent/50 uppercase">Open_Module →</div>
+    </a>
+  ))}
+</section>
+
+<section id="current-work" class="mb-20">
+  <div class="flex items-center gap-4 mb-8">
+    <h2 class="text-2xl font-bold text-accent mb-10 flex items-center gap-3">
+    <span class="text-md opacity-50 font-mono">0x01</span> Active Build Ledger
+  </h2>
+
+    <div class="h-px flex-1 bg-border/50"></div>
+  </div>
+
+  <div class="glass-card p-6 border-l-4 border-l-accent bg-accent/5">
+    <div class="flex flex-col md:flex-row justify-between gap-6">
+      <div class="flex-1">
+        <div class="flex items-center gap-3">
+          <h3 class="text-xl font-bold">ViFi Labs (FX On-chain)</h3>
+          <span class="px-2 py-0.5 bg-accent/20 text-accent text-[10px] rounded animate-pulse">BUILDING</span>
+        </div>
+        <p class="mt-3 text-sm opacity-80 leading-relaxed">
+          Leading the EVM implementation for a <b>Virtual Fiat Environment</b>. Converting USD-pegged assets into synthetic local currencies for instant cross-border settlement. 
+        </p>
+        <ul class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 text-xs font-mono opacity-70">
+          <li>> Python Simulations → Foundry Implementation</li>
+          <li>> Modular + Gas-Efficient Contract Design</li>
+          <li>> Unit/Integration/Staging Coverage: <b>>97%</b></li>
+        </ul>
+      </div>
+      <div class="flex flex-col items-end gap-2">
+        <a href="https://x.com/ViFi_Labs" class="text-accent hover:underline text-sm font-mono">@ViFi_Labs ↗</a>
+        <span class="text-[10px] opacity-40 font-mono italic">Launch Target: 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="security" class="mb-20">
+  <h2 class="text-2xl font-bold text-accent mb-10 flex items-center gap-3">
+    <span class="text-md opacity-50 font-mono">0x02</span> Security Research Ledger
+  </h2>
+  <div class="overflow-hidden border border-border rounded-lg">
+    <table class="w-full text-left font-mono text-xs">
+      <thead class="bg-muted/50 text-accent/70">
+        <tr>
+          <th class="p-4 border-b border-border">Target</th>
+          <th class="p-4 border-b border-border">Severity</th>
+          <th class="p-4 border-b border-border">Finding</th>
+          <th class="p-4 border-b border-border text-right">Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hover:bg-accent/5 transition-colors">
+          <td class="p-4 border-b border-border/50">ZeroLend</td>
+          <td class="p-4 border-b border-border/50 text-red-500 font-bold">HIGH</td>
+          <td class="p-4 border-b border-border/50">Governance bricked for whitelisted users</td>
+          <td class="p-4 border-b border-border/50 text-right"><a href="https://reports.immunefi.com/zerolend/29145-sc-high-zerolendtoken-is-bricked-to-use-for-whitelisted..." class="text-accent underline">Report ↗</a></td>
+        </tr>
+        <tr class="hover:bg-accent/5 transition-colors">
+          <td class="p-4">ZeroLend</td>
+          <td class="p-4 text-orange-400 font-bold">MEDIUM</td>
+          <td class="p-4">Unlimited minting of governance NFTs</td>
+          <td class="p-4 text-right"><a href="https://reports.immunefi.com/zerolend/29130-sc-medium-unlimited-minting-of-vestedzeronft" class="text-accent underline">Report ↗</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<Hr />
+
+<section id="deployments" class="mt-20">
+<h2 class="text-2xl font-bold text-accent mb-10 flex items-center gap-3">
+    <span class="text-md opacity-50 font-mono">0x03</span> Deployment Ledger
+  </h2>
+   <div class="space-y-4">
+    <div class="p-4 border border-border rounded-lg flex flex-col md:flex-row justify-between items-center gap-4 hover:border-accent/50 transition-colors">
+      <div class="flex-1">
+        <h4 class="font-bold text-lg">Riftlend: Multichain Lending</h4>
+        <p class="text-xs opacity-70">Unified interest rates across all chains for stress-free lending.</p>
+      </div>
+      <div class="flex gap-2">
+        <span class="px-2 py-1 bg-muted text-[10px] rounded">DeFi</span>
+        <span class="px-2 py-1 bg-muted text-[10px] rounded">Multichain</span>
+        <a href="https://github.com/RiftLend/contracts-v1" class="text-accent text-sm ml-4">Source ↗</a>
+      </div>
+    </div>
+
+    <div class="p-4 border border-border rounded-lg flex flex-col md:flex-row justify-between items-center gap-4 hover:border-accent/50 transition-colors">
+      <div class="flex-1">
+        <h4 class="font-bold text-lg">Multisig Swap Bridge</h4>
+        <p class="text-xs opacity-70">Cross-chain burn/mint logic with multiple signature verification.</p>
+      </div>
+      <div class="flex gap-2">
+        <span class="px-2 py-1 bg-muted text-[10px] rounded">Infrastructure</span>
+        <span class="px-2 py-1 bg-muted text-[10px] rounded">Solidity</span>
+        <a href="https://github.com/0xumarkhatab/MultisigCrossChainBridge" class="text-accent text-sm ml-4">Source ↗</a>
+      </div>
+    </div>
+    
+    <div class="p-4 border border-border rounded-lg flex flex-col md:flex-row justify-between items-center gap-4 hover:border-accent/50 transition-colors">
+      <div class="flex-1">
+        <h4 class="font-bold text-lg">Uniswap V4 Hook (Assembly/Huff)</h4>
+        <p class="text-xs opacity-70">Building on-chain hooks with assembly-level explanations.</p>
+      </div>
+      <div class="flex gap-2">
+        <span class="px-2 py-1 bg-muted text-[10px] rounded">Huff</span>
+        <span class="px-2 py-1 bg-muted text-[10px] rounded">Research</span>
+        <a href="https://github.com/0xumarkhatab/Build-UniswapV4-Hooks" class="text-accent text-sm ml-4">Repo ↗</a>
+      </div>
+    </div>
+    <div class="flex gap-2 mb-4 justify-center">
+      <a href=https://github.com/0xumarkhatab/0xumarkhatab/blob/main/Old_dev.md#projects-" class="p-2 text-center flex justify-center hover:scale-105 transition-all">
+      <h5 class="font-bold mt-2">Check more on github ↗</h5>
+    </a>
+
+    </div>
+    
+  </div>
+</section>
+
+
+
+<section id="tech-stack" class="mt-12">
+
+  <p class="text-xs uppercase tracking-[0.3em] text-accent/50 mb-6 font-bold text-center"> Core Infrastructure & Tooling</p>
+  <div class="flex flex-wrap justify-center gap-6 opacity-80">
+    <div class="flex flex-col items-center">
+      <span class="px-4 py-2 border border-border rounded-full font-mono text-sm hover:border-accent transition-colors">DeFi</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <span class="px-4 py-2 border border-border rounded-full font-mono text-sm hover:border-accent transition-colors">Emerging markets onchain</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <span class="px-4 py-2 border border-border rounded-full font-mono text-sm hover:border-accent transition-colors">Lending/Borrowing</span>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <span class="px-4 py-2 border border-border rounded-full font-mono text-sm hover:border-accent transition-colors">Solidity</span>
+    </div>
+    <div class="flex flex-col items-center">
+      <span class="px-4 py-2 border border-border rounded-full font-mono text-sm hover:border-accent transition-colors">EVM Bytecode Langs (Huff/Yul)</span>
+    </div>
+  </div>
+</section>
+
+
+<section class="grid grid-cols-1 md:grid-cols-2 gap-4 my-12">
+  {modules.map(mod => (
+    <a href={`/tags/${mod.tag}`} class="glass-card p-6 hover:bg-accent/5 transition-all group">
+      <div class="flex justify-between">
+        <span class="text-3xl">{mod.icon}</span>
+        <span class="text-accent opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+      </div>
+      <h3 class="text-xl font-bold mt-4">{mod.title}</h3>
+      <p class="text-sm opacity-60 mt-2">{mod.desc}</p>
+    </a>
+  ))}
+</section>
+
+
+<section class="mt-20">
+<h2 class="text-2xl font-bold text-accent mb-10 flex items-center gap-3">
+    <span class="text-md opacity-50 font-mono">0x04</span> Writing Ledger
+  </h2>
+
+  <p class="text-xs uppercase tracking-[0.3em] text-accent/50 mb-6 font-bold text-center">Technical Deep Dives</p>
+  
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <a href="https://github.com/0xumarkhatab/InstaDapp-Fluid-Protocol-Research" class="glass-card p-4 text-center hover:scale-105 transition-all">
+      <p class="text-xs font-mono opacity-50">DEFI_RESEARCH</p>
+      <h5 class="font-bold mt-2">InstaDapp Fluid Deep Dive</h5>
+    </a>
+    <a href="https://x.com/0xumarkhatab/status/1959811486978838540" class="glass-card p-4 text-center hover:scale-105 transition-all">
+      <p class="text-xs font-mono opacity-50">EVM_BYTECODE</p>
+      <h5 class="font-bold mt-2">How DUP Opcodes Work</h5>
+    </a>
+    <a href="https://github.com/0xumarkhatab/Blockchain-Writings" class="glass-card p-4 text-center hover:scale-105 transition-all">
+      <p class="text-xs font-mono opacity-50">ARCHITECTURE</p>
+      <h5 class="font-bold mt-2">MEV-Resistant DEX Design</h5>
+    </a>
+    
+
+  </div>
+  <a href=https://github.com/0xumarkhatab/0xumarkhatab/blob/main/Old_dev.md#2-about-me-as-a-defi-researcherwriter" class="p-2 text-center flex justify-center hover:scale-105 transition-all">
+      <h5 class="font-bold mt-2">Check more on github ↗</h5>
+    </a>
+
+  </section>
+
+<section id="employment" class="mt-20">
+  <h2 class="text-2xl font-bold text-accent mb-10 flex items-center gap-3">
+    <span class="text-md opacity-50 font-mono">0x05</span> Professional_History Ledger
+  </h2>
+
+  <div class="space-y-12 relative before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-border">
+    
+    <div class="relative pl-10 group">
+      <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-background border-2 border-accent z-10 animate-pulse"></div>
+      <div class="flex flex-col md:flex-row justify-between mb-1">
+        <h3 class="text-xl font-bold">Founding EVM Blockchain Engineer</h3>
+        <span class="text-accent font-mono text-sm">Jun 2025 — Present</span>
+      </div>
+      <p class="text-sm font-bold text-accent/80 mb-3">ViFi Labs • Full-time</p>
+      <ul class="text-sm opacity-70 space-y-2 leading-relaxed max-w-3xl">
+        <li>- Architecting a novel liquidity layer for emerging FX markets on-chain, enabling high-volume trades with minimal slippage.</li>
+        <li>- Building core smart contracts from scratch in Solidity and deploying across multiple EVM chains.</li>
+        <li>- Developing high-efficiency frontends to interact with decentralized liquidity protocols.</li>
+      </ul>
+    </div>
+
+    <div class="relative pl-10 group">
+      <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-background border-2 border-border z-10 group-hover:border-accent transition-colors"></div>
+      <div class="flex flex-col md:flex-row justify-between mb-1">
+        <h3 class="text-xl font-bold">Senior Smart Contracts Engineer</h3>
+        <span class="text-accent font-mono text-sm">Dec 2024 — Apr 2025</span>
+      </div>
+      <p class="text-sm font-bold text-accent/80 mb-3">RiftLend • Part-time</p>
+      <ul class="text-sm opacity-70 space-y-2 leading-relaxed max-w-3xl">
+        <li>- Architected next-generation lending and borrowing across EVM chains using Aave V2’s battle-tested codebase.</li>
+        <li>- Designed 20+ core smart contracts using Foundry, following strict industry standards.</li>
+        <li>- Successfully deployed to 5+ chains while integrating with frontends for a seamless user experience.</li>
+      </ul>
+    </div>
+
+    <div class="relative pl-10 group">
+      <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-background border-2 border-border z-10"></div>
+      <div class="flex flex-col md:flex-row justify-between mb-1">
+        <h3 class="text-xl font-bold">Senior Blockchain Engineer</h3>
+        <span class="text-accent font-mono text-sm">Feb 2024 — Dec 2024</span>
+      </div>
+      <p class="text-sm font-bold text-accent/80 mb-3">NextKore Ltd. • Full-time</p>
+      <ul class="text-sm opacity-70 space-y-2 leading-relaxed max-w-3xl">
+        <li>- Engineered <b>Slot Collider</b>, a modern storage slot collision detector for smart contract pairs.</li>
+        <li>- Built a deep storage audit tool capable of extracting storage variable data, reducing upgrade time by 90%.</li>
+      </ul>
+    </div>
+
+    <div class="relative pl-10 group">
+      <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-background border-2 border-border z-10"></div>
+      <div class="flex flex-col md:flex-row justify-between mb-1">
+        <h3 class="text-xl font-bold">Blockchain Engineer</h3>
+        <span class="text-accent font-mono text-sm">Feb 2023 — Mar 2024</span>
+      </div>
+      <p class="text-sm font-bold text-accent/80 mb-3">Astra Nova • Part-time</p>
+      <ul class="text-sm opacity-70 space-y-2 leading-relaxed max-w-3xl">
+        <li>- Crafted the entire <b>Deviants NFT</b> collection, reaching a TVL of approximately $1M.</li>
+        <li>- Developed and launched the <b>$RVV token</b> with a MarketCap of ~$4.6M.</li>
+        <li>- Led the smart contract launch for Deviants on the Ethereum Mainnet.</li>
+      </ul>
+    </div>
+
+    <div class="relative pl-10 group">
+      <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-background border-2 border-border z-10"></div>
+      <div class="flex flex-col md:flex-row justify-between mb-1">
+        <h3 class="text-xl font-bold">Blockchain Solution Architect</h3>
+        <span class="text-accent font-mono text-sm">Mar 2023 — Feb 2024</span>
+      </div>
+      <p class="text-sm font-bold text-accent/80 mb-3">Cherry Byte Technologies • Full-time</p>
+      <p class="text-sm opacity-70 leading-relaxed max-w-3xl">
+        Analyzed and launched complex products across NFTs, DeFi, and Crypto Wallets on Ethereum, Polygon, Cardano, and XRP landscapes.
+      </p>
+    </div>
+
+    <div class="relative pl-10 group">
+      <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-background border-2 border-border z-10"></div>
+      <div class="flex flex-col md:flex-row justify-between mb-1">
+        <h3 class="text-xl font-bold underline decoration-accent/30">Co-Founder</h3>
+        <span class="text-accent font-mono text-sm">Sep 2022 — Jan 2024</span>
+      </div>
+      <p class="text-sm font-bold text-accent/80 mb-3">Rentweb3 • Self-employed</p>
+      <p class="text-sm opacity-70 leading-relaxed max-w-3xl">
+        Built a renting protocol for NFTs and Dapps using the <b>ERC-4907</b> standard, allowing artists to launch rentable collections.
+      </p>
+    </div>
+
+    <div class="relative pl-10 group">
+      <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-background border-2 border-border z-10"></div>
+      <div class="flex flex-col md:flex-row justify-between mb-1">
+        <h3 class="text-xl font-bold">Blockchain Engineer</h3>
+        <span class="text-accent font-mono text-sm">Jan 2022 — Oct 2022</span>
+      </div>
+      <p class="text-sm font-bold text-accent/80 mb-3">SocialB.Digital • Full-time</p>
+      <p class="text-sm opacity-70 leading-relaxed max-w-3xl">
+        Led a development team in building decentralized applications across Ethereum and Tron ecosystems.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section id="certifications" class="mt-20">
+  <h2 class="text-2xl font-bold text-accent mb-10 flex items-center gap-3">
+    <span class="text-md opacity-50 font-mono">0x05</span> Certifications
+  </h2>
+  
+  <div class="space-y-4">
+    
+
+    <div class="pt-4 pb-2">
+      <h3 class="text-sm font-mono text-accent/70 uppercase tracking-widest">Cyfrin Updraft Specialized Tracks</h3>
+    </div>
+
+    <div class="glass-card p-4 border border-border group hover:border-accent transition-all flex gap-4">
+      <img src="https://profiles.cyfrin.io/images/cyfrin-logo.png" alt="Cyfrin" class="w-8 h-8 rounded bg-[#00ffa3] p-1 object-contain" />
+      <div class="flex-grow">
+        <div class="flex justify-between items-center">
+          <h4 class="text-sm font-bold">Aave V3 Protocol Development</h4>
+          <a href="https://profiles.cyfrin.io/u/0xumarkhatab/achievements/completed-courses" target="_blank" class="text-[10px] font-mono text-accent hover:underline">Verify</a>
+        </div>
+        <p class="text-[11px] opacity-60 mt-1">Deep-dive into Aave V3 architecture, lending pools, and flash loan mechanics.</p>
+      </div>
+    </div>
+
+    <div class="glass-card p-4 border border-border group hover:border-accent transition-all flex gap-4">
+      <img src="https://profiles.cyfrin.io/images/cyfrin-logo.png" alt="Cyfrin" class="w-8 h-8 rounded bg-[#00ffa3] p-1 object-contain" />
+      <div class="flex-grow">
+        <div class="flex justify-between items-center">
+          <h4 class="text-sm font-bold">Advanced Foundry</h4>
+          <a href="https://profiles.cyfrin.io/u/0xumarkhatab/achievements/completed-courses" target="_blank" class="text-[10px] font-mono text-accent hover:underline">Verify</a>
+        </div>
+        <p class="text-[11px] opacity-60 mt-1">Expert-level smart contract testing, fuzzing, and invariant suites.</p>
+      </div>
+    </div>
+
+    <div class="glass-card p-4 border border-border group hover:border-accent transition-all flex gap-4">
+      <img src="https://profiles.cyfrin.io/images/cyfrin-logo.png" alt="Cyfrin" class="w-8 h-8 rounded bg-[#00ffa3] p-1 object-contain" />
+      <div class="flex-grow">
+        <div class="flex justify-between items-center">
+          <h4 class="text-sm font-bold">Curve StableSwap</h4>
+          <a href="https://profiles.cyfrin.io/u/0xumarkhatab/achievements/completed-courses" target="_blank" class="text-[10px] font-mono text-accent hover:underline">Verify</a>
+        </div>
+        <p class="text-[11px] opacity-60 mt-1">Mastery of AMM invariant curves and liquidity provision for pegged assets.</p>
+      </div>
+    </div>
+
+    <div class="glass-card p-4 border border-border group hover:border-accent transition-all flex gap-4">
+      <img src="https://profiles.cyfrin.io/images/cyfrin-logo.png" alt="Cyfrin" class="w-8 h-8 rounded bg-[#00ffa3] p-1 object-contain" />
+      <div class="flex-grow">
+        <div class="flex justify-between items-center">
+          <h4 class="text-sm font-bold">Advanced Web3 Wallet Security</h4>
+          <a href="https://profiles.cyfrin.io/u/0xumarkhatab/achievements/completed-courses" target="_blank" class="text-[10px] font-mono text-accent hover:underline">Verify</a>
+        </div>
+        <p class="text-[11px] opacity-60 mt-1">Securing non-custodial wallet architectures and signing patterns.</p>
+      </div>
+    </div>
+
+    <div class="glass-card p-4 border border-border group hover:border-accent transition-all flex gap-4">
+      <img src="https://profiles.cyfrin.io/images/cyfrin-logo.png" alt="Cyfrin" class="w-8 h-8 rounded bg-[#00ffa3] p-1 object-contain" />
+      <div class="flex-grow">
+        <div class="flex justify-between items-center">
+          <h4 class="text-sm font-bold">Curve CryptoSwap</h4>
+          <a href="https://profiles.cyfrin.io/u/0xumarkhatab/achievements/completed-courses" target="_blank" class="text-[10px] font-mono text-accent hover:underline">Verify</a>
+        </div>
+        <p class="text-[11px] opacity-60 mt-1">Implementation of concentrated liquidity and internal oracle systems.</p>
+      </div>
+    </div>
+
+    <div class="glass-card p-4 border border-border group hover:border-accent transition-all flex gap-4">
+      <img src="https://profiles.cyfrin.io/images/cyfrin-logo.png" alt="Cyfrin" class="w-8 h-8 rounded bg-[#00ffa3] p-1 object-contain" />
+      <div class="flex-grow">
+        <div class="flex justify-between items-center">
+          <h4 class="text-sm font-bold">Foundry Fundamentals</h4>
+          <a href="https://profiles.cyfrin.io/u/0xumarkhatab/achievements/completed-courses" target="_blank" class="text-[10px] font-mono text-accent hover:underline">Verify</a>
+        </div>
+        <p class="text-[11px] opacity-60 mt-1">Core foundational knowledge for high-performance EVM development.</p>
+      </div>
+    </div>
+
+    
+  </div>
+  <div class="pt-4 pb-2">
+      <h3 class="text-sm font-mono text-accent/70 uppercase tracking-widest">Formal Education</h3>
+    </div>
+
+      <div class="glass-card p-6 border border-border group hover:border-accent transition-all flex gap-5">
+      <div class="flex-shrink-0">
+        <div class="w-12 h-12 bg-white rounded flex items-center justify-center font-bold text-black text-[10px] border border-border">FAST</div>
+      </div>
+      <div class="flex-grow">
+        <div class="flex justify-between items-start">
+          <h4 class="font-bold group-hover:text-accent">Bachelor in Computer Science</h4>
+          <span class="text-[10px] font-mono text-accent bg-accent/10 px-2 py-1 rounded">Academic</span>
+        </div>
+        <p class="text-xs opacity-60 mt-2 leading-relaxed">
+          FAST NUCES Lahore. Rigorous engineering background with a focus on Operating Systems, X86 Architecture, and Information Security.
+        </p>
+      </div>
+    </div>
+</section>
+
+    <!-- {featuredPosts.length > 0 && (
+        <>
+          <section id="featured" class="pt-12 pb-6">
+            <h2 class="text-2xl font-semibold tracking-wide">Featured</h2>
+            <ul>
+              {featuredPosts.map(data => (
+                <Card variant="h3" {...data} />
+              ))}
+            </ul>
+          </section>
+          {recentPosts.length > 0 && <Hr />}
+        </>
+      )
+    }
+
+    {
+      recentPosts.length > 0 && (
+        <section id="recent-posts" class="pt-12 pb-6">
+          <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
+          <ul>
+            {recentPosts.map(
+              (data, index) =>
+                index < SITE.postPerIndex && <Card variant="h3" {...data} />
+            )}
+          </ul>
+        </section>
+      )
+    } -->
+
+    <!-- <div class="my-8 text-center">
+      <LinkButton href="/posts/">
+        All Posts
+        <IconArrowRight class="inline-block rtl:-rotate-180" />
+      </LinkButton>
+    </div> -->
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
+      ?.dataset?.layout;
+    if (indexLayout) {
+      sessionStorage.setItem("backUrl", "/");
+    }
+  });
+</script>

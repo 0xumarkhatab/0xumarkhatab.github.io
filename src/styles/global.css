@@ -1,0 +1,96 @@
+@import "tailwindcss";
+@import "./typography.css";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+:root {
+  /* We define the base colors here */
+  --background: rgb(10, 10, 15);     /* Deep Space Black */
+  --foreground: rgb(230, 230, 230);  /* Off-white text */
+  --accent: rgb(0, 255, 157);        /* Matrix Green */
+  --muted: rgb(30, 30, 40);          /* Dark grey for cards/borders */
+  --border: rgb(40, 40, 50);
+  --card: rgb(20, 20, 25);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  
+  /* Adding a custom glow shadow for that "Security" aesthetic */
+  --shadow-glow: 0 0 20px rgba(0, 255, 157, 0.2);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-accent/75;
+    scrollbar-width: thin;
+    scrollbar-color: var(--muted) transparent;
+  }
+  html {
+    @apply overflow-y-scroll scroll-smooth;
+    background-color: var(--background);
+  }
+  body {
+    @apply flex min-h-svh flex-col bg-background font-mono text-foreground selection:bg-accent/30 selection:text-accent;
+  }
+  a,
+  button {
+    @apply outline-offset-1 outline-accent focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
+    transition: all 0.2s ease;
+  }
+  
+  /* Link hover effect to match the accent */
+  a:hover {
+    @apply text-accent;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  section,
+  footer {
+    @apply mx-auto max-w-app px-4;
+  }
+}
+
+@utility max-w-app {
+  @apply max-w-3xl;
+}
+
+.active-nav {
+  @apply underline decoration-wavy decoration-accent decoration-2 underline-offset-4;
+}
+
+/* Glassmorphism utility */
+.glass-card {
+  background: rgba(20, 20, 25, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 255, 157, 0.1);
+  border-radius: 12px;
+  box-shadow: var(--shadow-glow);
+}
+
+/* Modern scrollbar for Webkit */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border);
+}
+
+:target {
+  scroll-margin-block: 1rem;
+}
