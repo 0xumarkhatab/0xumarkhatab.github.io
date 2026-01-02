@@ -34,7 +34,7 @@ const categories = [
     link: "/tags/research" 
   }
 ];
-const modules = [
+const FieldExpertise = [
   { title: "DeFi Infrastructure", icon: "🏦", tag: "defi", desc: "Lending protocols (Riftlend), AMMs, and Staking." },
   { title: "Cross-Chain Systems", icon: "⛓️", tag: "infrastructure", desc: "Multisig Swap Bridges and Native Token Bridging." },
   { title: "Low-Level / Huff", icon: "⚡", tag: "huff", desc: "Gas optimization, EVM Opcodes, and Assembly." },
@@ -68,8 +68,8 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         </p>
 
         <div class="mt-8 flex flex-wrap gap-4">
-          <a href="#tech-stack" class="px-6 py-3 bg-accent text-background font-bold rounded shadow-glow hover:scale-105 transition-all">
-            View Stack
+          <a href="#current-work" class="px-6 py-3 bg-accent text-background font-bold rounded shadow-glow hover:scale-105 transition-all">
+            Active Work
           </a>
           <a href="https://twitter.com/0xumarkhatab" class="px-6 py-3 border border-accent/50 text-accent font-bold rounded hover:bg-accent/10 transition-all">
             Connect on X
@@ -77,11 +77,11 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         </div>
       </div>
 
-      <div class="w-full md:w-72 font-mono text-xs bg-background/60 p-6 rounded-lg border border-border space-y-4">
+      <div class="w-full md:w-90 font-mono text-xs bg-background/60 p-6 rounded-lg border border-border space-y-4">
         <div class="text-accent border-b border-border pb-2 font-bold uppercase tracking-widest">Active_Metrics</div>
         <div class="flex justify-between"><span>Experience:</span> <span class="text-accent">4+ Years</span></div>
-        <div class="flex justify-between"><span>Code:</span> <span class="text-accent">20k+ Solidity</span></div>
-        <div class="flex justify-between"><span>Findings:</span> <span class="text-accent">1H / 1M (ZeroLend)</span></div>
+        <div class="flex justify-between"><span>Contracts Shipped:</span> <span class="text-accent">160+ (20k+ nSLOC)</span></div>
+        <div class="flex justify-between"><span>Bugs Reported:</span> <span class="text-accent"> 5Hs / 4Ms </span></div> 
         <div class="flex justify-between"><span>Status:</span> <span class="text-accent">Founding @ ViFi</span></div>
       </div>
     </div>
@@ -121,7 +121,6 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         <ul class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-2 text-xs font-mono opacity-70">
           <li>> Python Simulations → Foundry Implementation</li>
           <li>> Modular + Gas-Efficient Contract Design</li>
-          <li>> Unit/Integration/Staging Coverage: <b>>97%</b></li>
         </ul>
       </div>
       <div class="flex flex-col items-end gap-2">
@@ -164,6 +163,9 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
       </tbody>
     </table>
   </div>
+    <a href="https://audits.sherlock.xyz/watson/0xumarkhatab" class="p-2 text-center flex justify-center hover:scale-105 transition-all">
+      <h5 class="font-bold mt-2">Sherlock Portfolio ↗</h5>
+    </a>
 </section>
 
 <Hr />
@@ -209,7 +211,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
       </div>
     </div>
     <div class="flex gap-2 mb-4 justify-center">
-      <a href=https://github.com/0xumarkhatab/0xumarkhatab/blob/main/Old_dev.md#projects-" class="p-2 text-center flex justify-center hover:scale-105 transition-all">
+      <a href="https://github.com/0xumarkhatab/0xumarkhatab/blob/main/Old_dev.md#projects-" class="p-2 text-center flex justify-center hover:scale-105 transition-all">
       <h5 class="font-bold mt-2">Check more on github ↗</h5>
     </a>
 
@@ -244,8 +246,8 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 </section>
 
 
-<section class="grid grid-cols-1 md:grid-cols-2 gap-4 my-12">
-  {modules.map(mod => (
+<section id="field-expertise" class="grid grid-cols-1 md:grid-cols-2 gap-4 my-12">
+  {FieldExpertise.map(mod => (
     <a href={`/tags/${mod.tag}`} class="glass-card p-6 hover:bg-accent/5 transition-all group">
       <div class="flex justify-between">
         <span class="text-3xl">{mod.icon}</span>
@@ -258,7 +260,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 </section>
 
 
-<section class="mt-20">
+<section id="writings" class="mt-20">
 <h2 class="text-2xl font-bold text-accent mb-10 flex items-center gap-3">
     <span class="text-md opacity-50 font-mono">0x04</span> Writing Ledger
   </h2>
@@ -282,7 +284,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     
 
   </div>
-  <a href=https://github.com/0xumarkhatab/0xumarkhatab/blob/main/Old_dev.md#2-about-me-as-a-defi-researcherwriter" class="p-2 text-center flex justify-center hover:scale-105 transition-all">
+  <a href="https://github.com/0xumarkhatab/0xumarkhatab/blob/main/Old_dev.md#2-about-me-as-a-defi-researcherwriter" class="p-2 text-center flex justify-center hover:scale-105 transition-all">
       <h5 class="font-bold mt-2">Check more on github ↗</h5>
     </a>
 
@@ -290,7 +292,7 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
 <section id="employment" class="mt-20">
   <h2 class="text-2xl font-bold text-accent mb-10 flex items-center gap-3">
-    <span class="text-md opacity-50 font-mono">0x05</span> Professional_History Ledger
+    <span class="text-md opacity-50 font-mono">0x05</span> Employments Ledger
   </h2>
 
   <div class="space-y-12 relative before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-border">
@@ -324,7 +326,8 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     </div>
 
     <div class="relative pl-10 group">
-      <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-background border-2 border-border z-10"></div>
+        <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-background border-2 border-accent z-10 animate-pulse"></div>
+
       <div class="flex flex-col md:flex-row justify-between mb-1">
         <h3 class="text-xl font-bold">Senior Blockchain Engineer</h3>
         <span class="text-accent font-mono text-sm">Feb 2024 — Dec 2024</span>
@@ -337,7 +340,8 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     </div>
 
     <div class="relative pl-10 group">
-      <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-background border-2 border-border z-10"></div>
+            <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-background border-2 border-accent z-10 animate-pulse"></div>
+
       <div class="flex flex-col md:flex-row justify-between mb-1">
         <h3 class="text-xl font-bold">Blockchain Engineer</h3>
         <span class="text-accent font-mono text-sm">Feb 2023 — Mar 2024</span>
@@ -351,7 +355,8 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     </div>
 
     <div class="relative pl-10 group">
-      <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-background border-2 border-border z-10"></div>
+            <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-background border-2 border-accent z-10 animate-pulse"></div>
+
       <div class="flex flex-col md:flex-row justify-between mb-1">
         <h3 class="text-xl font-bold">Blockchain Solution Architect</h3>
         <span class="text-accent font-mono text-sm">Mar 2023 — Feb 2024</span>
@@ -363,7 +368,8 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     </div>
 
     <div class="relative pl-10 group">
-      <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-background border-2 border-border z-10"></div>
+            <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-background border-2 border-accent z-10 animate-pulse"></div>
+
       <div class="flex flex-col md:flex-row justify-between mb-1">
         <h3 class="text-xl font-bold underline decoration-accent/30">Co-Founder</h3>
         <span class="text-accent font-mono text-sm">Sep 2022 — Jan 2024</span>
@@ -375,7 +381,8 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     </div>
 
     <div class="relative pl-10 group">
-      <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-background border-2 border-border z-10"></div>
+           <div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-background border-2 border-accent z-10 animate-pulse"></div>
+
       <div class="flex flex-col md:flex-row justify-between mb-1">
         <h3 class="text-xl font-bold">Blockchain Engineer</h3>
         <span class="text-accent font-mono text-sm">Jan 2022 — Oct 2022</span>
@@ -402,71 +409,57 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     </div>
 
     <div class="glass-card p-4 border border-border group hover:border-accent transition-all flex gap-4">
-      <img src="https://profiles.cyfrin.io/images/cyfrin-logo.png" alt="Cyfrin" class="w-8 h-8 rounded bg-[#00ffa3] p-1 object-contain" />
+      <img src="https://res.cloudinary.com/droqoz7lg/image/upload/f_auto/q_auto/v1748556702/assets/20250717-updraft-aavev3protocoldevelopment-badge.png" alt="Cyfrin" class="w-8 h-8 rounded bg-[#00ffa3] p-1 object-contain" />
       <div class="flex-grow">
         <div class="flex justify-between items-center">
           <h4 class="text-sm font-bold">Aave V3 Protocol Development</h4>
           <a href="https://profiles.cyfrin.io/u/0xumarkhatab/achievements/completed-courses" target="_blank" class="text-[10px] font-mono text-accent hover:underline">Verify</a>
         </div>
-        <p class="text-[11px] opacity-60 mt-1">Deep-dive into Aave V3 architecture, lending pools, and flash loan mechanics.</p>
+        <p class="text-[11px] opacity-60 mt-1">Deep-dive into Aave V3 architecture, lending pools, and flash loan mechanics i.e Reserves, ATokens, debt tokens,Reserve factors, liquidation pricing, credit delegation, LTV</p>
       </div>
     </div>
-
-    <div class="glass-card p-4 border border-border group hover:border-accent transition-all flex gap-4">
-      <img src="https://profiles.cyfrin.io/images/cyfrin-logo.png" alt="Cyfrin" class="w-8 h-8 rounded bg-[#00ffa3] p-1 object-contain" />
-      <div class="flex-grow">
-        <div class="flex justify-between items-center">
-          <h4 class="text-sm font-bold">Advanced Foundry</h4>
-          <a href="https://profiles.cyfrin.io/u/0xumarkhatab/achievements/completed-courses" target="_blank" class="text-[10px] font-mono text-accent hover:underline">Verify</a>
-        </div>
-        <p class="text-[11px] opacity-60 mt-1">Expert-level smart contract testing, fuzzing, and invariant suites.</p>
-      </div>
-    </div>
-
-    <div class="glass-card p-4 border border-border group hover:border-accent transition-all flex gap-4">
-      <img src="https://profiles.cyfrin.io/images/cyfrin-logo.png" alt="Cyfrin" class="w-8 h-8 rounded bg-[#00ffa3] p-1 object-contain" />
-      <div class="flex-grow">
-        <div class="flex justify-between items-center">
-          <h4 class="text-sm font-bold">Curve StableSwap</h4>
-          <a href="https://profiles.cyfrin.io/u/0xumarkhatab/achievements/completed-courses" target="_blank" class="text-[10px] font-mono text-accent hover:underline">Verify</a>
-        </div>
-        <p class="text-[11px] opacity-60 mt-1">Mastery of AMM invariant curves and liquidity provision for pegged assets.</p>
-      </div>
-    </div>
-
-    <div class="glass-card p-4 border border-border group hover:border-accent transition-all flex gap-4">
-      <img src="https://profiles.cyfrin.io/images/cyfrin-logo.png" alt="Cyfrin" class="w-8 h-8 rounded bg-[#00ffa3] p-1 object-contain" />
+  <div class="glass-card p-4 border border-border group hover:border-accent transition-all flex gap-4">
+      <img src="https://res.cloudinary.com/droqoz7lg/image/upload/f_auto/q_auto/v1748556702/assets/advanced-wallets.png" alt="Cyfrin" class="w-8 h-8 rounded bg-[#00ffa3] p-1 object-contain" />
       <div class="flex-grow">
         <div class="flex justify-between items-center">
           <h4 class="text-sm font-bold">Advanced Web3 Wallet Security</h4>
           <a href="https://profiles.cyfrin.io/u/0xumarkhatab/achievements/completed-courses" target="_blank" class="text-[10px] font-mono text-accent hover:underline">Verify</a>
         </div>
-        <p class="text-[11px] opacity-60 mt-1">Securing non-custodial wallet architectures and signing patterns.</p>
+        <p class="text-[11px] opacity-60 mt-1">Learnt Advanced transaction verification techniques , Set up and configuration of a Safe wallet multi-sig,EIP-712 structured data signatures and verification tools, decoding and verify complex transactions and became familiar with utils like <b>Cyfrin Safe Hash</b>,<b>Safe TX Hashes Util</b> <b>OpenZeppelin Safe Utils</b>.</p>
+      </div>
+    </div>
+    <div class="glass-card p-4 border border-border group hover:border-accent transition-all flex gap-4">
+      <img src="https://res.cloudinary.com/droqoz7lg/image/upload/f_auto/q_auto/v1748556702/assets/advanced-foundry-1749211036.png" alt="Cyfrin" class="w-8 h-8 rounded bg-[#00ffa3] p-1 object-contain" />
+      <div class="flex-grow">
+        <div class="flex justify-between items-center">
+          <h4 class="text-sm font-bold">Advanced Foundry</h4>
+          <a href="https://profiles.cyfrin.io/u/0xumarkhatab/achievements/completed-courses" target="_blank" class="text-[10px] font-mono text-accent hover:underline">Verify</a>
+        </div>
+        <p class="text-[11px] opacity-60 mt-1">Mastered web3 development techniques with Advanced Foundry for Solidity smart contract development. Learn to write, deploy, test, optimize, and interact with the smart contracts using industry-standard tools. Lessons learnt by the top smart contract engineers in web3.</p>
       </div>
     </div>
 
+    
     <div class="glass-card p-4 border border-border group hover:border-accent transition-all flex gap-4">
-      <img src="https://profiles.cyfrin.io/images/cyfrin-logo.png" alt="Cyfrin" class="w-8 h-8 rounded bg-[#00ffa3] p-1 object-contain" />
+      <img src="https://res.cloudinary.com/droqoz7lg/image/upload/f_auto/q_auto/v1748556702/assets/curve-v2-1749211335.png" alt="Cyfrin" class="w-8 h-8 rounded bg-[#00ffa3] p-1 object-contain" />
       <div class="flex-grow">
         <div class="flex justify-between items-center">
           <h4 class="text-sm font-bold">Curve CryptoSwap</h4>
           <a href="https://profiles.cyfrin.io/u/0xumarkhatab/achievements/completed-courses" target="_blank" class="text-[10px] font-mono text-accent hover:underline">Verify</a>
         </div>
-        <p class="text-[11px] opacity-60 mt-1">Implementation of concentrated liquidity and internal oracle systems.</p>
+        <p class="text-[11px] opacity-60 mt-1">Learnt the second generation of Curve Smart contracts containing  AMM and math, curves, liquidity pools, swaps, and more. Learned Stableswap tricrypto AMM math , internal price oracle amd understand the liquidity concentration mechanics</p>
       </div>
     </div>
-
     <div class="glass-card p-4 border border-border group hover:border-accent transition-all flex gap-4">
-      <img src="https://profiles.cyfrin.io/images/cyfrin-logo.png" alt="Cyfrin" class="w-8 h-8 rounded bg-[#00ffa3] p-1 object-contain" />
+      <img src="https://res.cloudinary.com/droqoz7lg/image/upload/f_auto/q_auto/v1748556702/assets/curve-v1-1749211234.png" alt="Cyfrin" class="w-8 h-8 rounded bg-[#00ffa3] p-1 object-contain" />
       <div class="flex-grow">
         <div class="flex justify-between items-center">
-          <h4 class="text-sm font-bold">Foundry Fundamentals</h4>
+          <h4 class="text-sm font-bold">Curve StableSwap</h4>
           <a href="https://profiles.cyfrin.io/u/0xumarkhatab/achievements/completed-courses" target="_blank" class="text-[10px] font-mono text-accent hover:underline">Verify</a>
         </div>
-        <p class="text-[11px] opacity-60 mt-1">Core foundational knowledge for high-performance EVM development.</p>
+        <p class="text-[11px] opacity-60 mt-1">Learnt how Curve finance V1 works, AMM and math, curves, liquidity pools, swaps, and more. Learned Stableswap AMM math , flatness control of the stableswap curve and to implement and understand the liquidity mechanics.</p>
       </div>
     </div>
-
     
   </div>
   <div class="pt-4 pb-2">

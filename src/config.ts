@@ -12,7 +12,7 @@ export const SITE = {
   website: "https://0xumarkhatab.github.io/",
   author: "0xumarkhatab",
   desc: "Senior Full-stack Blockchain Engineer | 160+ Contracts Deployed | DeFi & Emerging markets Infrastructure",
-  title: "Umar's Portfolio Site",
+  title: "Umar's Portfolio",
   postPerPage: 4,
   profile: "https://github.com/0xumarkhatab",
   ogImage: "astropaper-og.jpg",
