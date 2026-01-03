@@ -1,3 +1,12 @@
+---
+title: "140 Gas or Bust: How I Solved the Node Guardians Huff Optimized Dispatchers Challenge"
+pubDatetime: 2026-01-03
+tags:
+  - "DEFI"
+  - "technical-deep-dives"
+description: "Breakdown of my process on approaching node guardians huff challenge on optimized dispatchers."
+---
+
 # 140 Gas or Bust: How I Solved the Node Guardians Huff Optimized Dispatchers Challenge
 
 ![optimized-dispatchers theme image](./images/optimized-dispatchers.png)
