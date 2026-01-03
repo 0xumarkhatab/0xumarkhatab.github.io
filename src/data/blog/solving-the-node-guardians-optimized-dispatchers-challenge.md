@@ -10,14 +10,14 @@ description: "Breakdown of my process on approaching node guardians huff challen
 # 140 Gas or Bust: How I Solved the Node Guardians Huff Optimized Dispatchers Challenge
 
 ![optimized-dispatchers theme image](./images/optimized-dispatchers.png)
-I’ve been diving deep into low-level EVM optimization through the **"Unveiling Huff"** track on [Node Guardians](https://nodeguardians.io/adventure/optimized-dispatchers/part-2). Everything was going good ( a bit rough but managable ) until I hit **Challenge 3: Optimized Dispatchers**.
+I've been diving deep into low-level EVM optimization through the **"Unveiling Huff"** track on [Node Guardians](https://nodeguardians.io/adventure/optimized-dispatchers/part-2). Everything was going good ( a bit rough but managable ) until I hit **Challenge 3: Optimized Dispatchers**.
 
 The quest is split into two parts:
 We have to make a dispatch that handles
 1. **TownDefenseV1:** A contract with 10 functions.
 2. **TownDefenseV2:** A contract with 40 functions... and a **140 gas limit** for the entire transaction.
 
-Part 1 was a cool as I’ve been taking **Cyrin's assembly and formal verification course**, so writing a standard linear dispatcher (checking selectors one by one) was muscle memory. It passed easily and i thought wow , i'm getting good at it.
+Part 1 was a cool as I've been taking **Cyrin's assembly and formal verification course**, so writing a standard linear dispatcher (checking selectors one by one) was muscle memory. It passed easily and i thought wow , i'm getting good at it.
 
 But Part 2? That was a `different beast`.
 
@@ -79,11 +79,11 @@ I needed a dispatcher that cost the same amount of gas whether I was calling Fun
 
 ## Phase 1: The "Research" Loop
 
-I started where everyone starts: [**Philogy’s** famous article on dispatching](https://philogy.github.io/posts/selector-switches/). I’ll be honest—on the first read, some of it was too technical ( especially the last approaches lol ). It went over my head.
+I started where everyone starts: [**Philogy's** famous article on dispatching](https://philogy.github.io/posts/selector-switches/). I'll be honest , on the first read, some of it was too technical ( especially the last approaches lol ). It went over my head.
 
 I tried asking `ChatGPT` for help, but it kept giving me generic Solidity optimizations or broken assembly that didn't fit the Huff context. No luck there.
 
-I went back to `Philogy’s` article, forcing myself to understand the concept of **Jump Tables**. I managed to implement a basic one that passed `PublicTest1` (which had a generous 250 gas limit). But as soon as I ran it against the 140 gas limit of `PublicTest2`, it failed.
+I went back to `Philogy's` article, forcing myself to understand the concept of **Jump Tables**. I managed to implement a basic one that passed `PublicTest1` (which had a generous 250 gas limit). But as soon as I ran it against the 140 gas limit of `PublicTest2`, it failed.
 
 ## Phase 2: The Failed Bit-Shifting Experiment
 
@@ -116,7 +116,7 @@ I wrote this macro to map selectors like `0xAABBCCDD` to an index:
 ```
 
 **The Result:** `InvalidJump`.
-Huff is `unforgiving`. Unlike Solidity, which handles jump destinations for you, Huff requires you to manage the Program Counter (PC) manually. My offset calculations were slightly off—likely due to the jump destinations not being exactly 16 bytes aligned etc and execution kept landing in the middle of opcodes.
+Huff is `unforgiving`. Unlike Solidity, which handles jump destinations for you, Huff requires you to manage the Program Counter (PC) manually. My offset calculations were slightly off, likely due to the jump destinations not being exactly 16 bytes aligned etc and execution kept landing in the middle of opcodes.
 
 Without a robust Huff debugger, I was just suffering. I was blindly poking at memory offsets and getting reverted.
 
@@ -132,6 +132,10 @@ This script parses the Huff/Solidity interface and spits out the 4-byte selector
 
 initially only made for huff but later extended for solidity interfaces too , works good for huff , maybe u can use it later :)
 
+
+<details>
+  <summary>Click to view the Python Script</summary>
+  <p>
 
 ```bash
 #!/usr/bin/env bash
@@ -309,6 +313,10 @@ for sig in "${signatures[@]}"; do
 done
 
 ```
+</p>
+</details>
+
+<br/>
 
 Running this gave me the raw list of selectors
 
@@ -337,7 +345,7 @@ moving on...
 
 ## Phase 4: Finding the Perfect Mask
 
-I needed a **"Perfect Hash"**—a cheap operation to map these 40 random hex strings into a table , a unique identifier based table ... might be around size 40 or what ( tried later and found different number below )
+I needed a **"Perfect Hash"** a cheap operation to map these 40 random hex strings into a table , a unique identifier based table ... might be around size 40 or what ( tried later and found different number below )
 
 I experimented with my AI buddy, trying different bitmasks via trial and error:
 
@@ -423,12 +431,12 @@ Unlike V1, this solution runs in **O(1) Constant Time**.
 
 Note: please correct me if the estimation is wrong but it clearly passes 140 gas limit :)
 
-This leaves me with **~57 gas** of breathing room before hitting the 140 limit—plenty of space for the game logic.
+This leaves me with **~57 gas** of breathing room before hitting the 140 limit , plenty of space for the game logic.
 
 ## Conclusion
 
 This puzzle was a rollercoaster. It started with me feeling confident, then feeling stupid reading technical blogs, then suffering through broken bit-shifting macros.
 
-But the breakthrough didn't come from better coding—it came from **analyzing the data**. By finding that `0x3F` mask, I turned a complex search problem into a simple lookup, dropping the gas cost from ~300 to ~80.
+But the breakthrough didn't come from better coding, it came from **analyzing the data**. By finding that `0x3F` mask, I turned a complex search problem into a simple lookup, dropping the gas cost from ~300 to ~80.
 
 Now that the Town is defended, only one challenge remains: **The Final Duel with the Dark Huffoor.**
