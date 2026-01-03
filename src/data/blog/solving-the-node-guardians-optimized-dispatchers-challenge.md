@@ -1,13 +1,11 @@
 ---
-title: "140 Gas or Bust: How I Solved the Node Guardians Huff Optimized Dispatchers Challenge"
+title: "Solidity is ~O(log n), I Needed O(1): Building a Constant-Time Dispatcher in Huff"
 pubDatetime: 2026-01-03
 tags:
   - "DEFI"
   - "technical-deep-dives"
 description: "Breakdown of my process on approaching node guardians huff challenge on optimized dispatchers."
 ---
-
-# 140 Gas or Bust: How I Solved the Node Guardians Huff Optimized Dispatchers Challenge
 
 ![optimized-dispatchers theme image](./images/optimized-dispatchers.png)
 I've been diving deep into low-level EVM optimization through the **"Unveiling Huff"** track on [Node Guardians](https://nodeguardians.io/adventure/optimized-dispatchers/part-2). Everything was going good ( a bit rough but managable ) until I hit **Challenge 3: Optimized Dispatchers**.
